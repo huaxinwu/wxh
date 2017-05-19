@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib> 
+	<!-- 版本号、依赖jsp版本号、缩写、uri、描述等等 -->
+	<tlib-version>1.0</tlib-version>
+    <jsp-version>2.0</jsp-version>
+    <short-name>Example TLD</short-name>
+    <!-- 定义一个标签 -->
+    <tag>
+    	<!-- 标签名 -->
+    	<name>Hello</name>
+    	<!-- 标签名对应处理业务的类 -->
+    	<tag-class>com.wxh.tag.HelloTag</tag-class>
+    	<!-- 标签体(标签里面附带的内容) -->
+    	<body-content>scriptless</body-content>
+    	<!-- 自定义属性 -->
+    	<attribute>
+    		<name>message</name>
+    	</attribute>
+    </tag>
+    
+</taglib>

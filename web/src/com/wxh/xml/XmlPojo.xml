@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items>
+	<item id="301">
+		<name>name1</name>
+		<size>21</size>
+	</item>
+	<item id="302">
+		<name>name2</name>
+		<size>22</size>
+	</item>
+	<item id="303">
+		<name>name3</name>
+		<size>23</size>
+	</item>
+</items>

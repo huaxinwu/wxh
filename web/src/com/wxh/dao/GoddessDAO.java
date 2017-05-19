@@ -1,5 +1,5 @@
 /**
- * Ambition Inc.
+ * wxh Inc.
  * Copyright (c) 2006-2016 All Rights Reserved.
  */
 package com.wxh.dao;

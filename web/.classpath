@@ -30,12 +30,12 @@
 			<attribute name="owner.project.facets" value="jst.web.jstl"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/myeclipse2015/plugins/org.eclipse.swt.win32.win32.x86_64_3.103.2.v20150203-1351.jar"/>
 	<classpathentry kind="con" path="com.genuitec.runtime.library/com.genuitec.hibernate_4.1">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="WEB-INF/lib"/>
 			<attribute name="owner.project.facets" value="me.hibernate"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="D:/MyEclipse20155/plugins/org.eclipse.swt.win32.win32.x86_64_3.103.2.v20150203-1351.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

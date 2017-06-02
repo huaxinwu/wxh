@@ -12,7 +12,7 @@ import java.util.Arrays;
  * @version $Id: DinerMenu.java, v 0.1 2017年5月31日 上午10:34:01 wxh Exp $
  */
 public class DinerMenu implements Menu {
-    static final int MAX_ITEMS     = 6;
+    static final int MAX_ITEMS     = 4;
     int              numberOfItems = 0;
     MenuItem[]       menuItems;
 

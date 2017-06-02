@@ -7,10 +7,13 @@ package com.wxh.designmode;
 /**
  * 设计模式十一：迭代器模式(提供一种方法顺序访问一个聚合对象中的各个元素，而又不暴露其内部的表示。)
  * 对象村餐厅与对象村煎饼屋合并应用：用煎饼屋菜单当早餐，餐厅的菜单当午餐
+ * 设计原则：一个类应该只有一个引起变化的原因(该原则告诉我们，尽量让每个类保持单一责任。)
+ * 内聚：用来度量一个类或模板紧密地达到单一目的或责任。
+ * 组合菜单项
  * @author wxh
  * @version $Id: MenuItem.java, v 0.1 2017年5月31日 上午9:58:38 wxh Exp $
  */
-public class MenuItem {
+public class MenuItem extends MenuComponent {
 
     /** 名称 */
     String  name;
@@ -33,6 +36,19 @@ public class MenuItem {
         this.description = description;
         this.vegetarian = vegetarian;
         this.price = price;
+    }
+
+    /** 
+     * 
+     * @see com.wxh.designmode.MenuComponent#print()
+     */
+    public void print() {
+        System.out.print(" " + getName());
+        if (isVegetarian()) {
+            System.out.print("(v)");
+        }
+        System.out.println("," + getPrice());
+        System.out.println(" --" + getDescription());
     }
 
     /**

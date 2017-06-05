@@ -65,6 +65,7 @@ public class MenuTestDriverUnit {
             "A large burrito,with whole pinto beans,salsa,quacamole", true, 4.29));
         // 加入更多菜单
         Waitress waitress = new Waitress(allMenus);
-        waitress.printMenuComponent();
+        //        waitress.printMenuComponent();
+        waitress.printVegetarianMenu();
     }
 }

@@ -52,6 +52,24 @@ public class Waitress {
     }
 
     /**
+     * 打印素食菜单项
+     */
+    public void printVegetarianMenu() {
+        Iterator iterator = allMenus.createIterator();
+        System.out.println("\nVEGETARIAN MENU \n-----");
+        while (iterator.hasNext()) {
+            MenuComponent menuComponent = (MenuComponent) iterator.next();
+            try {
+                if (menuComponent.isVegetarian()) {
+                    // 只有菜单项才会打印
+                    menuComponent.print();
+                }
+            } catch (UnsupportedOperationException e) {
+            }
+        }
+    }
+
+    /**
      * 组件方式打印菜单
      */
     public void printMenuComponent() {

@@ -4,6 +4,8 @@
  */
 package com.wxh.designmode;
 
+import java.util.Iterator;
+
 /**
  * 设计模式十二：组合模式(允许你将对象组合成树形结构来表现整体部分层次结构，组合能让客户以一致的方式处理个别对象以及对象组合。)
  * @author wxh
@@ -71,6 +73,14 @@ public abstract class MenuComponent {
      * 打印
      */
     public void print() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * 创建一个迭代器
+     * @return
+     */
+    public Iterator createIterator() {
         throw new UnsupportedOperationException();
     }
 }

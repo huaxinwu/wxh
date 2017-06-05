@@ -23,6 +23,14 @@ public class MenuUnit extends MenuComponent {
         this.description = description;
     }
 
+    /**
+     * 创建一个复合迭代器
+     * @return
+     */
+    public Iterator createIterator() {
+        return new CompositeIterator(menuComponents.iterator());
+    }
+
     /** 
      * 添加组件
      * @param menuComponent

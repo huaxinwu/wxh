@@ -38,6 +38,14 @@ public class MenuItem extends MenuComponent {
         this.price = price;
     }
 
+    /**
+     * 创建一个空的迭代器
+     * @return
+     */
+    public java.util.Iterator createIterator() {
+        return new NullIterator();
+    }
+
     /** 
      * 
      * @see com.wxh.designmode.MenuComponent#print()

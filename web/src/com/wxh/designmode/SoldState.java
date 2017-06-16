@@ -11,7 +11,7 @@ package com.wxh.designmode;
  */
 public class SoldState implements State {
 
-    GumballMachineNew gumballMachine;
+    transient GumballMachineNew gumballMachine;
 
     /**
      * @param gumballMachine

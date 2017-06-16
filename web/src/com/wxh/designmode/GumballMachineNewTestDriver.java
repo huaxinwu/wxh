@@ -4,6 +4,8 @@
  */
 package com.wxh.designmode;
 
+import java.rmi.RemoteException;
+
 /**
  *
  * @author wxh
@@ -11,7 +13,7 @@ package com.wxh.designmode;
  */
 public class GumballMachineNewTestDriver {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws RemoteException {
         GumballMachineNew gumballMachine = new GumballMachineNew(5);
 
         System.out.println(gumballMachine);

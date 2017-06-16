@@ -4,24 +4,52 @@
  */
 package com.wxh.designmode;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
 /**
  * 糖果机--成员变量都有接口声明
  * @author wxh
  * @version $Id: GumballMachineNew.java, v 0.1 2017年6月6日 下午4:03:49 wxh Exp $
  */
-public class GumballMachineNew {
-    State soldOutState;
-    State noQuarterState;
-    State hasQuarterState;
-    State soldState;
-    State winnerState;
-    State state = soldOutState;
-    int   count = 0;
+public class GumballMachineNew extends UnicastRemoteObject implements GumballMachineRemote {
+    State  soldOutState;
+    State  noQuarterState;
+    State  hasQuarterState;
+    State  soldState;
+    State  winnerState;
+    State  state = soldOutState;
+    int    count = 0;
+    /** 位置  */
+    String location;
+
+    public GumballMachineNew() throws RemoteException {
+
+    }
+
+    /**
+     *  在构造器初始化所有的状态(位置)
+     * @throws RemoteException 
+     */
+    public GumballMachineNew(String location, int numberGumballs) throws RemoteException {
+        super();
+        soldOutState = new SoldOutState(this);
+        noQuarterState = new NoQuarterState(this);
+        hasQuarterState = new HasQuarterState(this);
+        soldState = new SoldState(this);
+        winnerState = new WinnerState(this);
+        this.count = numberGumballs;
+        this.location = location;
+        if (numberGumballs > 0) {
+            state = noQuarterState;
+        }
+    }
 
     /**
      *  在构造器初始化所有的状态
+     * @throws RemoteException 
      */
-    public GumballMachineNew(int numberGumballs) {
+    public GumballMachineNew(int numberGumballs) throws RemoteException {
         super();
         soldOutState = new SoldOutState(this);
         noQuarterState = new NoQuarterState(this);
@@ -72,6 +100,10 @@ public class GumballMachineNew {
     void refill() {
         this.count = count;
         state = noQuarterState;
+    }
+
+    public String getLocation() {
+        return location;
     }
 
     /**

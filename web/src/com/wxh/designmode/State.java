@@ -4,12 +4,14 @@
  */
 package com.wxh.designmode;
 
+import java.io.Serializable;
+
 /**
  * 所有状态顶层接口
  * @author wxh
  * @version $Id: State.java, v 0.1 2017年6月6日 下午3:41:22 wxh Exp $
  */
-public interface State {
+public interface State extends Serializable {
 
     /**
      * 投币

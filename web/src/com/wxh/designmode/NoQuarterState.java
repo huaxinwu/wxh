@@ -11,7 +11,8 @@ package com.wxh.designmode;
  */
 public class NoQuarterState implements State {
 
-    GumballMachineNew gumballMachine;
+    // 不被序列化
+    transient GumballMachineNew gumballMachine;
 
     /**
      * @param gumballMachine

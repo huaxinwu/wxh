@@ -5,15 +5,14 @@
 package com.wxh.virtual.machine;
 
 /**
- * 有权限栈检查
+ * 没有权限的栈检查
  * @author wxh
- * @version $Id: Example2a.java, v 0.1 2017年7月4日 上午11:44:21 wxh Exp $
+ * @version $Id: Exampl2b.java, v 0.1 2017年7月5日 下午2:59:25 wxh Exp $
  */
-public class Example2a {
+public class Exampl2b {
 
     public static void main(String[] args) {
-
-        TextFileDisplayer tfd = new TextFileDisplayer("question.txt");
+        TextFileDisplayer tfd = new TextFileDisplayer("answer.txt");
         Friend friend = new Friend(tfd, true);
         Stranger stranger = new Stranger(friend, true);
         stranger.doYourThing();

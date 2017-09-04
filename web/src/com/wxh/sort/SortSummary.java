@@ -4,6 +4,7 @@
  */
 package com.wxh.sort;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -14,9 +15,9 @@ import java.util.Arrays;
  * 3.简单选择排序--在要排序的一组数中，选出最小的元素与第一个位置元素进行比较交换位置，然后在剩下的元素中最小的元素与第二个位置元素比较交换位置，如此循环直到倒数第二个元素与倒数第一个元素比较为止。
  * 4.堆排序--堆排序是一种树形选择排序，是对直接选择排序的有效改进。堆的定义如下：具有n个元素的序列（h1,h2,...,hn),当且仅当满足（hi>=h2i,hi>=2i+1）或（hi<=h2i,hi<=2i+1）(i=1,2,...,n/2)时称之为堆。在这里只讨论满足前者条件的堆。由堆的定义可以看出，堆顶元素（即第一个元素）必为最大项（大顶堆）。完全二叉树可以很直观地表示堆的结构。堆顶为根，其它为左子树、右子树。初始时把要排序的数的序列看作是一棵顺序存储的二叉树，调整它们的存储序，使之成为一个堆，这时堆的根节点的数最大。然后将根节点与堆的最后一个节点交换。然后对前面(n-1)个数重新调整使之成为堆。依此类推，直到只有两个节点的堆，并对它们作交换，最后得到有n个节点的有序序列。从算法描述来看，堆排序需要两个过程，一是建立堆，二是堆顶与堆的最后一个元素交换位置。所以堆排序有两个函数组成。一是建堆的渗透函数，二是反复调用渗透函数实现排序的函数。
  * 5.冒泡排序--在要排序的一组数中，对没有排好序的范围内全部元素，自上而下对相邻两个元素依次比较和调整，让较大的元素往下沉，较小元素往上冒。即：每个相邻两个元素比较后，发现他们排序与排序要求相反，交换位置。
- * 6.快速排序
- * 7.归并排序
- * 8.基数排序
+ * 6.快速排序--选择一个基准元素，通常选择第一个元素或者最后一个元素，通过一趟扫描，将待排序分成两部分，一部分比基准元素小，一部分比基准元素大或者等于，此时基准元素在其排好序后的正确位置，然后再用同样方法递归地排序划分的两个部分。
+ * 7.归并排序--将两个或者两个以上的有序合成一个新的有序表，即把待排序序列分成若干个子序列，每个子序列是有序的，然后再把有序子序列合并成整体有序序列。
+ * 8.基数排序--将待比较的数统一为同样数位长度，数位较短的数前面补零，然后，从最低位开始，依次进一次排序，这样从最低位排序一直到最高位排序完成以后，数列就变成一个有序序列。
  * @author wxh
  * @version $Id: SortSummary.java, v 0.1 2017年7月14日 下午4:11:15 wxh Exp $
  */
@@ -43,6 +44,18 @@ public class SortSummary {
 
         // 冒泡排序
         heapSort(NUMBERS);
+        System.out.println("----------------------华丽分割线---------------------------");
+
+        // 快速排序
+        quickSort(NUMBERS);
+        System.out.println("----------------------华丽分割线---------------------------");
+
+        // 归并排序
+        mergeSort(NUMBERS);
+        System.out.println("----------------------华丽分割线---------------------------");
+
+        // 基数排序
+        radixSort(NUMBERS);
         System.out.println("----------------------华丽分割线---------------------------");
     }
 
@@ -268,5 +281,212 @@ public class SortSummary {
             }
         }
         System.out.println("bubbleSort: " + Arrays.toString(array));
+    }
+
+    /**
+     * 快速排序
+     * 基本思路：选择一个基准元素，通常选择第一个元素或者最后一个元素，通过一趟扫描，将待排序分成两部分，
+     *          一部分比基准元素小，一部分比基准元素大或者等于，此时基准元素在其排好序后的正确位置，
+     *          然后再用同样方法递归地排序划分的两部分。
+     *  把第一个元素作为key，在数组第一个元素和最后一个元素设置下标，然后用这个key从数组下标j向前遍历比较，
+     *  直到找到一个比key小的元素，交换位置完成后。又用key从数组下标i向后遍历比较，直到找到一个大于或者等于key的元素，
+     *  交换位置。依次反复循环操作，直至排序完成。
+     *  比如：57(key) 68 59 72 28 96 33 24 19 
+     *       i                             j
+     *  1.57为基准元素，从最后一个元素比较后：19 68 59 72 28 96 33 24 57 
+     *  2.57为基准元素，从第一个元素比较后：     19 57 59 72 28 96 33 24 68
+     *  3.57为基准元素，从最后一个元素比较后：19 24 59 72 28 96 33 57 68
+     *  4.57为基准元素，从第一个元素比较后：     19 24 57 72 28 96 33 59 68
+     *  5.57为基准元素，从最后一个元素比较后：19 24 33 72 28 96 57 59 68
+     *  6.57为基准元素，从第一个元素比较后：     19 24 33 57 28 96 72 59 68
+     *  7.57为基准元素，从最后一个元素比较后：19 24 33 28 57 96 72 59 68
+     *  8.57为基准元素，从第一个元素比较后：     19 24 33 28 57 96 72 59 68 
+     *  此时57已结排好序，以57为中心将前后划分两部分，采用同样方法递归排序
+     *   [19 24 33 28] 57 [96 72 59 68]
+     * 1. 19 24 33 28  57  68 72 59 96 
+     *... 19 24 33 28  57  68 72 59 96
+     *... 19 24 28 33  57  59 68 72 96 排序完成 
+     * @param array
+     */
+    public static void quickSort(int[] array) {
+        qucikSort(array, 0, array.length - 1);
+        System.out.println("quickSort:  " + Arrays.toString(array));
+    }
+
+    /**
+     * 获取基准元素位置
+     * @param array
+     * @param low
+     * @param high
+     * @return int
+     */
+    private static int getMiddle(int[] array, int low, int high) {
+        // 数组第一个元素最为基准元素
+        int temp = array[low];
+        while (low < high) {
+            while (low < high && array[high] > temp) {
+                high--;
+            }
+            // 比基准元素小的移动到低位
+            array[low] = array[high];
+            while (low < high && array[low] <= temp) {
+                low++;
+            }
+            // 比基准元素大的移动到高位
+            array[high] = array[low];
+        }
+        // 中间位置记录到尾部
+        array[low] = temp;
+        // 中间元素位置
+        return low;
+    }
+
+    /**
+     * 将一个数组的元素按照高位和低位比较排序
+     * @param array
+     * @param low
+     * @param high
+     */
+    private static void qucikSort(int[] array, int low, int high) {
+        if (low < high) {
+            // 将数组一分为二,获取中间元素
+            int middle = getMiddle(array, low, array.length - 1);
+            // 对低位递归排序
+            qucikSort(array, low, middle - 1);
+            // 对高位递归排序
+            qucikSort(array, middle + 1, high);
+        }
+    }
+
+    /**
+     * 归并排序
+     * 基本思路：将两个或者两个以上的有序表合成一个新的有序表，即把待排序序列分成若干个子序列，
+     *          每个子序列都是有序的，然后再把有序子序列合并成整体的有序序列。
+     * 比如：57 68 59 52 72 28 96 33
+     * 1.[57 68] [52 59] [28 72] [33 96]
+     * 2.[52 57 59 68] [28 33 72 96]
+     * 3. 28 33 52 57 59 68 72 96
+     * @param array
+     */
+    public static void mergeSort(int[] array) {
+        mergeSort(array, 0, array.length - 1);
+        System.out.println("mergeSort:  " + Arrays.toString(array));
+    }
+
+    /**
+     * 将左右数组排序并合并成一个新数组
+     * @param array
+     * @param left
+     * @param right
+     */
+    private static void mergeSort(int[] array, int left, int right) {
+        if (left < right) {
+            // 找出中间索引 
+            int center = (left + right) / 2;
+            // 对左边数组进行递归 
+            mergeSort(array, left, center);
+            // 对右边数组进行递归 
+            mergeSort(array, center + 1, right);
+            // 合并 左右数组
+            mergeSort(array, left, center, right);
+        }
+    }
+
+    /**
+     * 将左右中数组合并一个新数组
+     * @param array
+     * @param left
+     * @param center
+     * @param right
+     */
+    private static void mergeSort(int[] array, int left, int center, int right) {
+        // 创建临时数组并赋值
+        int[] tempArray = new int[array.length];
+        int middle = center + 1;
+        // 记录中间数组的索引
+        int third = left;
+        int temp = left;
+        // 左边元素小于中间元素，中间元素下一个位置元素小于右边元素
+        while (left <= center && middle <= right) {
+            // 从两个数组中取出最小的放入中间数组 
+            if (array[left] < array[middle]) {
+                tempArray[third++] = array[left++];
+            } else {
+                tempArray[third++] = array[middle++];
+            }
+        }
+        // 剩余部分依次放入中间数组 
+        while (middle <= right) {
+            tempArray[third++] = array[middle++];
+        }
+        while (left <= center) {
+            tempArray[third++] = array[left++];
+        }
+        // 将中间数组中的内容复制回原数组 
+        while (temp <= right) {
+            array[temp] = tempArray[temp++];
+        }
+    }
+
+    /**
+     * 基数排序
+     * 基本思路：将待比较的数值，统一为同样数位长度，数位较短的前面补零，从最低位开始排序，
+     *          这样从最低位排序一直到最高位完成后，数列就成了一个有序序列。
+     * 比如：135 242 192 93 345 11 24 19
+     *      135 242 192 093 345 011 024 019
+     *         0    1     2     3   4      5    6   7   8   9 
+     *收集个位                   11  242 192  93  24  135 345             19
+     *      11  242 192 93  24 135 345 19
+     *收集十位                 11 19   24    135 242 345                 192 93
+     *      11  19  24  135 242 345  192 93
+     *收集百位       11 19 24 93 135 192 242 345            
+     *  11 19 24 93 135 192 242 345 
+     * @param array
+     */
+    public static void radixSort(int[] array) {
+        // 首先确定排序的次数
+        int max = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] > max) {
+                // 交换位置
+                max = array[i];
+            }
+        }
+        int count = 0;
+        // 判断位数(个位、十位、百位...)
+        while (max > 0) {
+            max /= 10;
+            count++;
+        }
+
+        // 建立10个队列
+        ArrayList<ArrayList<Integer>> queue = new ArrayList<ArrayList<Integer>>();
+        for (int i = 0; i < 10; i++) {
+            ArrayList<Integer> queue1 = new ArrayList<Integer>();
+            queue.add(queue1);
+        }
+        // 通过count来分配和收集元素
+        for (int i = 0; i < count; i++) {
+            // 分配数组元素
+            for (int anArray : array) {
+                // 获取count+1的位数的元素
+                // 11%10/1 19%100/10
+                int x = anArray % (int) Math.pow(10, i + 1) / (int) Math.pow(10, i);
+                ArrayList<Integer> queue2 = queue.get(x);
+                queue2.add(anArray);
+                queue.set(x, queue2);
+            }
+            int count2 = 0;
+            // 收集队列元素
+            for (int k = 0; k < 10; k++) {
+                while (queue.get(k).size() > 0) {
+                    ArrayList<Integer> queue3 = queue.get(k);
+                    array[count2] = queue3.get(0);
+                    queue3.remove(0);
+                    count2++;
+                }
+            }
+        }
+        System.out.println("radixSort:  " + Arrays.toString(array));
     }
 }

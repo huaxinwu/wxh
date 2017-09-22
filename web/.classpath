@@ -21,6 +21,7 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mysql-connector-java-5.1.9.jar"/>
 	<classpathentry kind="lib" path="D:/MyEclipse20155/plugins/org.eclipse.swt.win32.win32.x86_64_3.103.2.v20150203-1351.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/freemarker.jar" sourcepath="WebRoot/WEB-INF/lib/freemarker.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/asm-3.2.jar"/>
 	<classpathentry kind="con" path="com.genuitec.runtime.library/com.genuitec.generic_6.0">
 		<attributes>
 			<attribute name="owner.project.facets" value="jst.web"/>

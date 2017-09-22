@@ -34,7 +34,7 @@ public class SortSummary {
         shellSort(NUMBERS);
         System.out.println("----------------------华丽分割线---------------------------");
 
-        // 希尔排序
+        // 选择排序
         selectSort(NUMBERS);
         System.out.println("----------------------华丽分割线---------------------------");
 
@@ -43,7 +43,7 @@ public class SortSummary {
         System.out.println("----------------------华丽分割线---------------------------");
 
         // 冒泡排序
-        heapSort(NUMBERS);
+        bubbleSort(NUMBERS);
         System.out.println("----------------------华丽分割线---------------------------");
 
         // 快速排序

@@ -19,6 +19,13 @@ public class DBUtils {
     private static final String USER   = "root";
     private static final String PWD    = "cqabj208";
 
+    /**
+     * 强制私有化，防止被实例化
+     */
+    private DBUtils() {
+
+    }
+
     public static Connection getConn() {
         Connection conn = null;
         try {

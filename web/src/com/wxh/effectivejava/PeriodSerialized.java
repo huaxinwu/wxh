@@ -53,4 +53,5 @@ public final class PeriodSerialized implements Serializable {
     public String toString() {
         return start + "-" + end;
     }
+
 }

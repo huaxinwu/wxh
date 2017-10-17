@@ -2,7 +2,7 @@
  * wxh Inc.
  * Copyright (c) 2016-2017 All Rights Reserved.
  */
-package com.wxh.virtual.machine;
+package com.wxh.jvm;
 
 /**
  * Java程序成功返回两种情况：1.return 2.抛出异常

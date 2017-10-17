@@ -7,7 +7,7 @@ package com.wxh.designmode;
 import java.util.ArrayList;
 
 /**
- * 煎饼屋菜单
+ * 煎饼屋菜单 
  * @author wxh
  * @version $Id: PancakeHouseMenu.java, v 0.1 2017年5月31日 上午10:21:12 wxh Exp $
  */

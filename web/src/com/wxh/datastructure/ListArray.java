@@ -32,6 +32,9 @@ public class ListArray implements List {
         elements = objects;
     }
 
+    public ListArray() {
+    }
+
     /**
      * 初始化数据
      */
